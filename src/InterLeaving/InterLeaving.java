@@ -45,13 +45,14 @@ public class InterLeaving {
         System.out.println("Enter packet to be lost");
         int lossNumber=scan.nextInt();
         for (int i = 0; i < packetSize; i++) {
-            interLeavedStream[lossNumber-1][i]='\u0000';
+            interLeavedStream[lossNumber-1][i]=-1;
         }
 
         System.out.println("Recieved stream is");
         for (int i = 0; i < packetCount; i++) {
             for (int j = 0; j < packetSize; j++) {
-                System.out.print(interLeavedStream[i][j]+" ");
+                originalStream[i][j]=interLeavedStream[j][i];
+                System.out.print(originalStream[i][j]+" ");
 
             }
             System.out.println();
