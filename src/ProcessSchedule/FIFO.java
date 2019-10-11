@@ -44,4 +44,16 @@ public class FIFO {
         System.out.printf("Average turn around time = %d ", avg_tat);
 
     }
+
+    public static void main(String[] args) {
+        int processes[] = {1, 2, 3};
+        int n = processes.length;
+
+        //Burst time of all processes
+        int burst_time[] = {10, 5, 8};
+
+        FIFO fifo=new FIFO();
+        fifo.findAvgTime(processes, n, burst_time);
+
+    }
 }
