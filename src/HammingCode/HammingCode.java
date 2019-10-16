@@ -60,7 +60,7 @@ public class HammingCode {
     {
 
         // input message
-        String str = "10110";
+        String str = "1011";
         int M = str.length();
         int r = 1;
 
