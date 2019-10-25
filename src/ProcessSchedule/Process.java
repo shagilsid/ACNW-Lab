@@ -1,7 +1,5 @@
 package ProcessSchedule;
 
-import sun.misc.GC;
-
 import java.util.*;
 
 public class Process {
@@ -24,13 +22,13 @@ class GChart {
 
 // user define comparative method (first arrival first serve,
 // if arrival time same then heigh priority first)
-class MyComparator implements Comparator {
+class MyComparator implements Comparator<Process> {
 
-    public int compare(Object o1, Object o2)
+    public int compare(Process o1, Process o2)
     {
 
-        Process p1 = (Process)o1;
-        Process p2 = (Process)o2;
+        Process p1 = o1;
+        Process p2 = o2;
         if (p1.at < p2.at)
             return (-1);
 
@@ -45,7 +43,7 @@ class MyComparator implements Comparator {
 
 // class to find Gantt chart
 class FindGantChart {
-    static void findGc(LinkedList queue)
+    static void findGc(LinkedList<Process> queue)
     {
 
         // initial time = 0
@@ -53,16 +51,16 @@ class FindGantChart {
 
         // priority Queue sort data according
         // to arrival time or priority (ready queue)
-        TreeSet prique = new TreeSet(new MyComparator());
+        TreeSet<Process> prique = new TreeSet(new MyComparator());
 
         // link list for store processes data
         LinkedList<GChart> result = new LinkedList<>();
 
         // process in ready queue from new state queue
         while (queue.size() > 0)
-            prique.add((Process)queue.removeFirst());
+            prique.add(queue.removeFirst());
 
-        Iterator it = prique.iterator();
+        Iterator<Process> it = prique.iterator();
 
         // time set to according to first process
         time = ((Process)prique.first()).at;
@@ -72,7 +70,7 @@ class FindGantChart {
 
             // dispatcher dispatch the
             // process ready to running state
-            Process obj = (Process)it.next();
+            Process obj =it.next();
 
             GChart gc1 = new GChart();
             gc1.pno = obj.pno;
