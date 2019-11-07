@@ -15,11 +15,11 @@ public class HammingCode {
     static int[] calculation(int[] ar, int r)
     {
         for (int i = 0; i < r; i++) {
-            int x = (int)Math.pow(2, i);
+            int x = (int)Math.pow(2, i); //calculate position of redundant bit
             for (int j = 1; j < ar.length; j++) {
                 if (((j >> i) & 1) == 1) {
                     if (x != j)
-                        ar[x] = ar[x] ^ ar[j];
+                        ar[x] = ar[x] ^ ar[j]; //XOR 
                 }
             }
             System.out.println("r" + x + " = "
@@ -34,6 +34,9 @@ public class HammingCode {
         int[] ar = new int[r + M + 1];
         int j = 0;
         for (int i = 1; i < ar.length; i++) {
+			/* (Math.log(i) / Math.log(2) changes the base to 2 
+			 * Setting 0 at redundant bits position
+			 * or setting data bits at other position*/
             if ((Math.ceil(Math.log(i) / Math.log(2))
                     - Math.floor(Math.log(i) / Math.log(2)))
                     == 0) {
@@ -73,5 +76,28 @@ public class HammingCode {
         System.out.println("Generated hamming code ");
         ar = calculation(ar, r);
         print(ar);
+        
+        ar[7]=0;
+        System.out.println("Bit at this position is changed");
+        
+        print(calculatePosition(ar,r));
     }
+
+	private static int[] calculatePosition(int[] ar, int r) {
+		int[] pos=new int[r];
+		int k=r-1;
+		for (int i = 0; i < r; i++) {
+            int x = (int)Math.pow(2, i); //calculate position of redundant bit
+            for (int j = 1; j < ar.length; j++) {
+                if (((j >> i) & 1) == 1) {
+                    if (x != j)
+                        ar[x] = ar[x] ^ ar[j]; //XOR 
+                }
+            }
+            pos[k--]=ar[x];
+            
+        }
+		return pos;
+		
+	}
 }
