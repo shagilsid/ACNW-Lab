@@ -33,25 +33,14 @@ public class HammingCode {
     {
         int[] ar = new int[r + M + 1];
         int j = 0;
+        int k=0;
         for (int i = 1; i < ar.length; i++) {
-			/* (Math.log(i) / Math.log(2) changes the base to 2 
-			 * Setting 0 at redundant bits position
-			 * or setting data bits at other position*/
-            if ((Math.ceil(Math.log(i) / Math.log(2))
-                    - Math.floor(Math.log(i) / Math.log(2)))
-                    == 0) {
-
-                // if i == 2^n for n in (0, 1, 2, .....)
-                // then ar[i]=0
-                // codeword[i] = 0 ----
-                // redundant bits are intialized
-                // with value 0
+            if(i==Math.pow(2, k)) {
                 ar[i] = 0;
+                k++;
             }
             else {
-
-                // codeword[i] = dataword[j]
-                ar[i] = (int)(str.charAt(j) - '0');
+            	ar[i] = (int)(str.charAt(j) - '0');
                 j++;
             }
         }
@@ -63,7 +52,7 @@ public class HammingCode {
     {
 
         // input message
-        String str = "1011";
+        String str = "10011010";
         int M = str.length();
         int r = 1;
 
@@ -77,7 +66,7 @@ public class HammingCode {
         ar = calculation(ar, r);
         print(ar);
         
-        ar[7]=0;
+        ar[7]=0;// changing bit at position 7;
         System.out.println("Bit at this position is changed");
         
         print(calculatePosition(ar,r));
