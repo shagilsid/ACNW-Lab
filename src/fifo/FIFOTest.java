@@ -1,5 +1,6 @@
 package fifo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ public class FIFOTest {
 		int arrivaltime[] = { 1, 2, 2, 4, 4 }; 
 		int bursttime[] = { 3, 5, 1, 7, 4 }; 
 		int priority[] = { 3, 4, 1, 7, 8 }; 
-		LinkedList<Process> procList=new LinkedList<Process>();
+		ArrayList<Process> procList=new ArrayList<Process>();
 		
 		for(int i=0;i<arrivaltime.length;i++) {			
 			Process p=new Process(arrivaltime[i],bursttime[i],priority[i]);
@@ -25,7 +26,7 @@ public class FIFOTest {
 		Collections.sort(procList);
 		
 		Iterator<Process> it=procList.iterator();
-		int clock=procList.getFirst().arrivalTime;
+		int clock=procList.get(0).arrivalTime;
 		while(it.hasNext()) {
 			Process p=it.next();
 			p.startTime=clock;

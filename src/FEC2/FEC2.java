@@ -21,7 +21,9 @@ public class FEC2 {
             }
             System.out.println();
         }
-
+        
+        
+		/* Calculating the XORed bits */
         for (int i = 0; i < originalStream.length - 1; i++) {
             int count=0;
             for (int j = 0; j < originalStream[i].length; j++) {

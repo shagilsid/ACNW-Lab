@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Process implements Comparable<Process>,Runnable{
+public class Process implements Comparable<Process>{
 	public int arrivalTime;
 	public int burstTime;
 	public int priority;
@@ -28,12 +28,6 @@ public class Process implements Comparable<Process>,Runnable{
 			return -1;
 		else
 			return 1;
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 
 		
